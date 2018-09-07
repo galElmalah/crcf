@@ -1,2 +1,2 @@
 # crcf
-CRSF - Create react Component Folder 
+CRSF - Create React Component Folder 
