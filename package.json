@@ -1,0 +1,21 @@
+{
+  "name": "create-react-component-folder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --jsx react",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gal Elmalah",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.4.13",
+    "commander": "^2.18.0",
+    "jest": "^23.5.0",
+    "react": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.4"
+  }
+}
