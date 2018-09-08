@@ -39,17 +39,17 @@ export default class ${fileName}Driver{
 }
 
 const componentFileContent = (fileName: string): string => {
-  return `
-import * as 'React' from 'react';
+  return `import * as React from 'react';
 
-export default class ${fileName}{
+export default class ${fileName} extends React.Component{
   constructor(props) {
+    super(props);
   }
 
   render() {
     return (
       <div></div>
-    )
+    );
   }
 }
 `

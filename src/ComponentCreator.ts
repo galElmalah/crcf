@@ -11,17 +11,13 @@ const capitalize = (text: string):string => text.replace(/^\w/, c => c.toUpperCa
 
 
 export class ComponentCreator {
-  readonly currentPath: string;
-  readonly componentName: string;
-  readonly isTypeScript: boolean;
-
-  constructor(componentName: string, isTypeScript: boolean, currentPath: string) {
+  constructor(private componentName: string, private isTypeScript: boolean, private currentPath: string) {
     this.currentPath = currentPath;
     this.componentName = capitalize(componentName);
     this.isTypeScript = isTypeScript;
   }
 
-  buildFolderPath = () => {
+  private buildFolderPath = () => {
     return path.join(this.currentPath, this.componentName);
   }
 
@@ -35,7 +31,7 @@ export class ComponentCreator {
     }
   }
 
-  createFiles = (files: File[]) => {
+  private createFiles = (files: File[]) => {
     files.forEach(file => {
       fs.writeFile(`${this.buildFolderPath()}/${file.fileName}`, file.content ,(err) => {
         if (err) {

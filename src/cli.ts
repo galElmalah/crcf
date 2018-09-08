@@ -11,8 +11,8 @@ cli
   .alias('c')
   .description('Create a component folder structure')
   .action((componentName) => {
-    const creator = new ComponentCreator(componentName, cli.ts, process.cwd());
-    creator.buildFolder();
+    const componentCreator = new ComponentCreator(componentName, cli.ts, process.cwd());
+    componentCreator.buildFolder();
   })
 
 cli.parse(process.argv)
