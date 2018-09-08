@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import fileGenerator from './fileGenerator';
+import FileNamesGenerator from './FilesGenerator/FilesGenerator';
 
 export interface File {
   fileName: string;
@@ -28,8 +28,8 @@ export class ComponentCreator {
   buildFolder = () => {
     try{ 
       fs.mkdirSync(this.buildFolderPath());
-      const files = fileGenerator(this.componentName, this.isTypeScript)
-      this.createFiles(files);
+      const filesCreator = new FileNamesGenerator(this.componentName, this.isTypeScript);
+      this.createFiles(filesCreator.createFilesTemplate());
     } catch(err) {
       console.log('Error while generating the component folder: ', err);
     }
@@ -42,7 +42,7 @@ export class ComponentCreator {
           console.log(`Error creating ${file.fileName} :`, err);
         }
       })
-    })
+    });
   }
 
 }
