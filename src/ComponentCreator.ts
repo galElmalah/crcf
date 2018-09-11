@@ -1,19 +1,19 @@
 import path from 'path';
 import fs from 'fs';
 import FileNamesGenerator from './FilesGenerator/FilesGenerator';
+import chalk from 'chalk';
 
 export interface File {
   fileName: string;
   content: string;
 }
 
-const capitalize = (text: string):string => text.replace(/^\w/, c => c.toUpperCase());
-
+const error = chalk.bold.red;
 
 export class ComponentCreator {
   constructor(private componentName: string, private isTypeScript: boolean, private currentPath: string) {
     this.currentPath = currentPath;
-    this.componentName = capitalize(componentName);
+    this.componentName = componentName;
     this.isTypeScript = isTypeScript;
   }
 
@@ -22,13 +22,9 @@ export class ComponentCreator {
   }
 
   buildFolder = () => {
-    try{ 
-      fs.mkdirSync(this.buildFolderPath());
-      const filesCreator = new FileNamesGenerator(this.componentName, this.isTypeScript);
-      this.createFiles(filesCreator.createFilesTemplate());
-    } catch(err) {
-      console.log('Error while generating the component folder: ', err);
-    }
+    fs.mkdirSync(this.buildFolderPath());
+    const filesCreator = new FileNamesGenerator(this.componentName, this.isTypeScript);
+    this.createFiles(filesCreator.createFilesTemplate());
   }
 
   private createFiles = (files: File[]) => {

@@ -2,29 +2,28 @@ export type stringToString = {
   [key: string]: string;
 };
 
-type fileTypes = 'driver'|'component'|'spec'|'index'
+type fileTypes = 'driver'|'component'|'spec'|'index'|'sass'
 
 
 export const contentMapper = (fileName: string): stringToString => ({
   'driver': driverFileContent(fileName),
   'component': componentFileContent(fileName),
   'spec': specFileContent(fileName),
-  'index': indexFileContent(fileName)
+  'index': indexFileContent(fileName),
+  'style': stylesheetFileContent()
 })
 
 export const getFileEndings = (isTs: boolean) => ({
   'driver': alternate(isTs, '.driver.tsx', '.driver.js'),
   'component': alternate(isTs, '.tsx', '.js'),
   'spec': alternate(isTs, '.spec.ts', '.spec.js'),
-  'index': alternate(isTs, '.ts', '.js')
+  'index': alternate(isTs, '.ts', '.js'),
+  'style': '.sass'
 })
 
 const alternate = (firstOrSecond: boolean, firstOption: any, secondOption: any) => {
   return firstOrSecond ? firstOption : secondOption;
 }
-
-const isTypeScript = (is: boolean): string => is ? 'tsx' : 'js';
-
 
 const specFileContent = (fileName: string): string => {
   return `import ${fileName}Driver from './${fileName}.driver';`
@@ -35,13 +34,15 @@ const driverFileContent = (fileName: string): string => {
 
 export default class ${fileName}Driver{
 }    
-  `
+  `;
 }
 
 const componentFileContent = (fileName: string): string => {
-  return `import * as React from 'react';
+  return (
+`import React, {Component} from 'react';
+import * as s from './${fileName}.sass';
 
-export default class ${fileName} extends React.Component{
+export default class ${fileName} extends Component{
   constructor(props) {
     super(props);
   }
@@ -52,10 +53,14 @@ export default class ${fileName} extends React.Component{
     );
   }
 }
-`
+`);
 }
 
 const indexFileContent = (fileName: string): string => {
-  return `export {default} from './${fileName}';`
+  return `export {default} from './${fileName}';`;
+}
+
+const stylesheetFileContent = (): string => {
+  return ``;
 }
 

@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "ts-node ./src",
+    "start": "ts-node ./src",
     "build": "tsc --jsx react",
-    "test": "jest"
+    "test": "jest",
+    "build:link": "npm i && npm run build && chmod +x ./dist/cli.js && npm link"
+  },
+  "bin": {
+    "crcf": "./dist/cli.js"
   },
   "author": "Gal Elmalah",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^16.4.13",
+    "chalk": "^2.4.1",
     "commander": "^2.18.0",
     "jest": "^23.5.0",
     "react": "^16.5.0"
