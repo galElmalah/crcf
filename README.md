@@ -13,7 +13,7 @@ The folder will include the following files:
 2. `<componentName>.spec.js`
 3. `<componentName>.driver.js`
 4. `index.js`
-5. `<componentName>.sass`
+5. `<componentName>.scss`
 
 I'm betting you are reading this and saying to yourself "**Crap** what if I am using typeScript?!", well, no worries mate just add the **--ts** flag and all the necessary changes will be made.
 
