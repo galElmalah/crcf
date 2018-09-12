@@ -18,7 +18,7 @@ export const getFileEndings = (isTs: boolean) => ({
   'component': alternate(isTs, '.tsx', '.js'),
   'spec': alternate(isTs, '.spec.ts', '.spec.js'),
   'index': alternate(isTs, '.ts', '.js'),
-  'style': '.sass'
+  'style': '.scss'
 })
 
 const alternate = (firstOrSecond: boolean, firstOption: any, secondOption: any) => {
