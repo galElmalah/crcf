@@ -19,13 +19,15 @@ export default class FileNamesGenerator {
 
   private buildCompleteFileNames = (fileEndings: stringToString) => {
     const fileNames: stringToString = {}
-    Object.keys(fileEndings).map(key => {
+    Object.keys(fileEndings).forEach(key => {
       if (key === 'index') {
-        return 'index'.concat(fileEndings[key]);
+        fileNames[key] = 'index'.concat(fileEndings[key]);
+        return;
       } else if (key === 'style') {
-        return changeFirstLetterToLower(this.fileName).concat(fileEndings[key]);
+        fileNames[key] = changeFirstLetterToLower(this.fileName).concat(fileEndings[key]);
+        return;
       }
-      return this.fileName.concat(fileEndings[key]);
+      fileNames[key] = this.fileName.concat(fileEndings[key]);
     })
     return fileNames;
   }
