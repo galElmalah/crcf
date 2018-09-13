@@ -31,7 +31,14 @@ const alternate = (firstOrSecond: boolean, firstOption: any, secondOption: any) 
 }
 
 const specFileContent = (fileName: string): string => {
-  return `import ${fileName}Driver from './${fileName}.driver';`
+  return `import ${fileName}Driver from './${fileName}.driver';
+  
+describe('initial test', () => {
+  test('placeholder', () => {
+    expect(1).toBe(1);
+  });
+});
+  `
 }
 
 const driverFileContent = (fileName: string): string => {
