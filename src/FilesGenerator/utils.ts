@@ -4,6 +4,11 @@ export type stringToString = {
 
 type fileTypes = 'driver'|'component'|'spec'|'index'|'sass'
 
+export const changeFirstLetterToLower = (text: string) => {
+  let temp = text.split('');
+  temp[0] = temp[0].toLowerCase();
+  return temp.join('');
+}
 
 export const contentMapper = (fileName: string): stringToString => ({
   'driver': driverFileContent(fileName),
@@ -39,10 +44,10 @@ export default class ${fileName}Driver{
 
 const componentFileContent = (fileName: string): string => {
   return (
-`import React, {Component} from 'react';
-import * as s from './${fileName}.sass';
+`import * as React from 'react';
+import * as s from './${changeFirstLetterToLower(fileName)}${getFileEndings(true)['style']}';
 
-export default class ${fileName} extends Component{
+export default class ${fileName} extends React.Component{
   constructor(props) {
     super(props);
   }

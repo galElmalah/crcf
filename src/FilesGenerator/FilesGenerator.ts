@@ -1,5 +1,5 @@
 import { File } from '../ComponentCreator';
-import {stringToString, contentMapper, getFileEndings} from './utils'
+import {stringToString, contentMapper, getFileEndings, changeFirstLetterToLower} from './utils'
 
 export default class FileNamesGenerator {
   constructor(private fileName: string, private isTs:boolean) {};
@@ -20,7 +20,12 @@ export default class FileNamesGenerator {
   private buildCompleteFileNames = (fileEndings: stringToString) => {
     const fileNames: stringToString = {}
     Object.keys(fileEndings).map(key => {
-      fileNames[key] = key === 'index' ? 'index'.concat(fileEndings[key]) : this.fileName.concat(fileEndings[key]);
+      if (key === 'index') {
+        return 'index'.concat(fileEndings[key]);
+      } else if (key === 'style') {
+        return changeFirstLetterToLower(this.fileName).concat(fileEndings[key]);
+      }
+      return this.fileName.concat(fileEndings[key]);
     })
     return fileNames;
   }
