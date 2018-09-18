@@ -3,12 +3,12 @@ import cli from 'commander';
 import { ComponentCreator } from './ComponentCreator';
 import {isValidInput, showErrorMessage, showSuccessMessage, capitalize} from './utils'
 
-const tryToCreateBoilerplateForComponent = (componentName: string, currentPath: string, isTypeScript: boolean) => {
+const tryToCreateBoilerplateForComponent = async (componentName: string, currentPath: string, isTypeScript: boolean) => {
   const capitalizeName = capitalize(componentName);
   const componentCreator = new ComponentCreator(capitalizeName, isTypeScript, currentPath);
   try{
-    componentCreator.buildFolder();
-    showSuccessMessage(capitalizeName, currentPath)
+    await componentCreator.buildFolder();
+    showSuccessMessage(capitalizeName, currentPath, isTypeScript)
   } catch(err) {
     showErrorMessage(capitalizeName, currentPath)
   }

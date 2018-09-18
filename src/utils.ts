@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 
 const error = chalk.bold.red;
-
+const boldGreen = chalk.green.bold;
+const path = chalk.blue.underline.bold
 
 
 export const isValidInput = (componentName: string) => {
@@ -17,13 +18,12 @@ export const isValidInput = (componentName: string) => {
 
 }
 
-export const capitalize = (text: string):string => text.replace(/^\w/, c => c.toUpperCase());
+export const capitalize = (text: string): string => text.replace(/^\w/, c => c.toUpperCase());
 
-
-export const showSuccessMessage = (componentName: string, createdAtPath: string) => {
-  const message = `Horray!!
-Successfuly created ${chalk.green(componentName)}.
-Component was created at: ${chalk.blue.underline.bold(createdAtPath)}
+export const showSuccessMessage = (componentName: string, createdAtPath: string, isTypeScript?: boolean) => {
+  const message = `Hooray!!
+Successfuly created component named ${boldGreen(componentName)}.
+${ boldGreen(isTypeScript ? 'TypeScript' : 'JavaScript')} component was created at: ${path(createdAtPath)}
 `
   console.log(message);
 }
@@ -31,7 +31,7 @@ Component was created at: ${chalk.blue.underline.bold(createdAtPath)}
 export const showErrorMessage = (componentName: string, createdAtPath: string) => {
   const message =`${error('Error while creating the component name.')}
 there is probably a folder with the same name as ${chalk.green(componentName)}
-at the location ${chalk.blue.underline(createdAtPath)}
+at the location ${path(createdAtPath)}
   `;
   console.log(message);
 }
