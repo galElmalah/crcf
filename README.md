@@ -9,10 +9,10 @@ npm install is already included in the script.
 A ready to go folder with all of the boilerplate for a react component already included :smirk:.<br/>
 The folder will include the following files:
 
-1. `<componentName>.js`
-2. `<componentName>.spec.js`
-3. `<componentName>.driver.js`
-4. `index.js`
+1. `<componentName>.(js|tsx)`
+2. `<componentName>.spec.(js|ts)`
+3. `<componentName>.driver.(js|tsx)`
+4. `index.(js|ts)`
 5. `<componentName>.scss`
 
 I'm betting you are reading this and saying to yourself "**Crap** what if I am using typeScript?!", well, no worries mate just add the **--ts** flag and all the necessary changes will be made.
