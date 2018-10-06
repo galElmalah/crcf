@@ -10,10 +10,10 @@ export const changeFirstLetterToLower = (text: string) => {
   return temp.join('');
 }
 
-export const contentMapper = (fileName: string): stringToString => ({
+export const contentMapper = (fileName: string, isTs: boolean): stringToString => ({
   'driver': driverFileContent(fileName),
   'component': componentFileContent(fileName),
-  'spec': specFileContent(fileName),
+  'spec': specFileContent(fileName, isTs),
   'index': indexFileContent(fileName),
   'style': stylesheetFileContent()
 })
@@ -30,13 +30,19 @@ const alternate = (firstOrSecond: boolean, firstOption: any, secondOption: any) 
   return firstOrSecond ? firstOption : secondOption;
 }
 
-const specFileContent = (fileName: string): string => {
+const specFileContent = (fileName: string, isTs: boolean): string => {
   return `import ${fileName}Driver from './${fileName}.driver';
   
 describe('initial test', () => {
-  test('placeholder', () => {
-    expect(1).toBe(1);
+  let driver${isTs ? `: ${fileName}Driver` : ''};
+
+  beforeEach(() => {
+    driver = new ${fileName}Driver();
   });
+
+  test('fake', () => {
+    expect(1).toBe(1);
+  })
 });
   `
 }

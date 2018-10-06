@@ -8,7 +8,7 @@ export default class FileNamesGenerator {
     const {isTs, fileName} = this;
     const fileEndings = getFileEndings(isTs);
     const fileNames = this.buildCompleteFileNames(fileEndings);
-    const keyToContent = contentMapper(fileName)
+    const keyToContent = contentMapper(fileName, isTs)
     return Object.keys(fileNames).map(key => {
       return {
         fileName: fileNames[key],
