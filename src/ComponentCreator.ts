@@ -16,7 +16,8 @@ const fileErrorHandler = ({error, file}: {error: any, file: File}): void => {
   console.log(message);
 }
 export class ComponentCreator {
-  constructor(private componentName: string, private isTypeScript: boolean, private currentPath: string) {}
+  private isTypeScript: boolean = false;
+  constructor(private componentName: string, private currentPath: string) {}
 
   private buildFolderPath = () => {
     return path.join(this.currentPath, this.componentName);
@@ -43,6 +44,10 @@ export class ComponentCreator {
         resolve(file.fileName);
       })
     });
+  }
+
+  withTypeScript(){
+    this.isTypeScript = true;
   }
 
 };

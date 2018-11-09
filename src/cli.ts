@@ -5,8 +5,11 @@ import {isValidInput, showErrorMessage, showSuccessMessage, capitalize} from './
 
 const tryToCreateBoilerplateForComponent = async (componentName: string, currentPath: string, isTypeScript: boolean) => {
   const capitalizeName = capitalize(componentName);
-  const componentCreator = new ComponentCreator(capitalizeName, isTypeScript, currentPath);
+  const componentCreator = new ComponentCreator(capitalizeName, currentPath);
   try{
+    if(isTypeScript){
+      componentCreator.withTypeScript();
+    }
     await componentCreator.buildFolder();
     showSuccessMessage(capitalizeName, currentPath, isTypeScript)
   } catch(err) {
