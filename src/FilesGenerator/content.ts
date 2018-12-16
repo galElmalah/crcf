@@ -1,10 +1,10 @@
-import { changeFirstLetterToLower, getFileEndings } from './utils';
+import { changeFirstLetterToLower, getFileEndings } from "./utils";
 
 export const specFileContent = (fileName: string, isTs: boolean): string => {
   return `import ${fileName}Driver from './${fileName}.driver';
   
 describe('initial test', () => {
-  let driver${isTs ? `: ${fileName}Driver` : ''};
+  let driver${isTs ? `: ${fileName}Driver` : ""};
 
   beforeEach(() => {
     driver = new ${fileName}Driver();
@@ -14,8 +14,8 @@ describe('initial test', () => {
     expect(1).toBe(1);
   })
 });
-  `
-}
+  `;
+};
 
 export const driverFileContent = (fileName: string): string => {
   return `import ${fileName} from './${fileName}';
@@ -23,15 +23,16 @@ export const driverFileContent = (fileName: string): string => {
 export default class ${fileName}Driver{
 }    
   `;
-}
+};
 
 export const componentFileContent = (fileName: string): string => {
-  return (
-`import * as React from 'react';
-import * as s from './${changeFirstLetterToLower(fileName)}${getFileEndings().style}';
+  return `import * as React from 'react';
+import * as s from './${changeFirstLetterToLower(fileName)}${
+    getFileEndings().style
+  }';
 
 export default class ${fileName} extends React.Component{
-  export constructor(props) {
+  constructor(props)  {
     super(props);
   }
 
@@ -41,14 +42,13 @@ export default class ${fileName} extends React.Component{
     );
   }
 }
-`);
-}
+`;
+};
 
 export const indexFileContent = (fileName: string): string => {
   return `export {default} from './${fileName}';`;
-}
+};
 
 export const stylesheetFileContent = (): string => {
   return ``;
-}
-
+};
