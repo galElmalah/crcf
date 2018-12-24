@@ -2,7 +2,7 @@
 React component folder creator
 
 ## Initial steps
-Just run the script: `npm run build:link`.
+Just run the script: `npm run build:link`.<br>
 npm install is already included in the script.
 
 ## What you get from this AWESOME tool?!
@@ -15,7 +15,7 @@ The folder will include the following files:
 4. `index.(js|ts)`
 5. `<componentName>.scss`
 
-I'm betting you are reading this and saying to yourself "**Crap** what if I am using typeScript?!", well, no worries mate just add the **--ts** flag and all the necessary changes will be made.
+I'm betting you are reading this and saying to yourself "**Crap** what if I am using typeScript?!", well, no worries just add the **--ts** flag and all the necessary changes will be made.
 
 ## How do I use this AWESOME tool?!
 Follow the steps described in the **"Initial steps:"** section and then just write in your console `crcf create <componentName>`.<br/>
