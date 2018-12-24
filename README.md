@@ -1,5 +1,5 @@
 # CRCF - Create React Component Folder 
-This is a React component folder creator for the best FED team in Wix, the legendary *Dev-Center* squad.
+React component folder creator
 
 ## Initial steps
 Just run the script: `npm run build:link`.
